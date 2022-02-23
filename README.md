@@ -1641,3 +1641,55 @@ MVC 패턴 동작 순서
     - 모델 덕분에 컨트롤과 뷰의 의존 관계가 간소화됩니다.
   4. 뷰 로직 실행 결과를 고객에게 응답합니다.
 ![mvc](https://images.velog.io/images/urtimeislimited/post/378d2958-c5d0-4b12-a341-7128b9316d0d/image.png)
+	
+***
+### 4. MVC 프레임워크 만들기
+
+MVC 패턴은 "공통 처리의 어려움"이라는 한계가 있었습니다. 프론트 컨트롤러 패턴을 도입시켜 점진적으로 개선시켜보겠습니다.
+
+####  프론트 컨트롤러 패턴 소개
+
+프론터 컨트롤러를 도입하기 전에는
+클라이언트가 매번 공통 로직과 컨트롤러 로직을 각각 수행했어야 했습니다. 
+![fc](https://images.velog.io/images/urtimeislimited/post/83b4e885-16f7-4f12-868f-05913be92231/image.png)
+프론트 컨트롤러를 도입 하게 되면 먼저 공통 로직을 한 곳에서 처리하고 각 컨트롤러에게 로직 처리를 넘겨줍니다. 공통의 관심사를 우선적으로 먼저 처리해주는 문지기 역할이라고 할 수 있습니다.
+![afterFc](https://images.velog.io/images/urtimeislimited/post/68b70845-5536-4f9d-81a2-896786950d2f/image.png)
+
+FrontController의 특징은 다음과 같습니다.
+
+- 프론트 컨트롤러 서블릿 하나로 클라이언트의 요청을 받습니다.
+- 프론트 컨트롤러가 요청에 맞는 컨트롤러를 찾아서 호출합니다.
+- 입구를 하나로! 최소화합니다.
+- **공통 처리 가능**
+- 프론트 컨트롤러를 제외한 나머지 컨트롤러는 서블릿을 사용하지 않아도 됩니다.
+  - 요청 매핑에 사용되는 서블릿은 프론트 컨트롤러로 충분합니다.
+
+스프링 웹 MVC의 핵심은 바로 **FrontController**에 있습니다. 스프링 웹 MVC의 __DispatcherServlet__이 FrontController 패턴으로 구현되어 있기 때문입니다.
+- [DispatcherServlet](https://www.java67.com/2017/06/what-is-use-of-dispatcherservlet-in-spring-mvc.html#:~:text=The%20DispatcherServlet%20is%20one%20of,acts%20as%20a%20Front%20Controller.&text=The%20DispatcherServlet%20is%20a%20front,Spring%20MVC%20controllers%20for%20processing.) : DispatcherServlet은 Spring MVC 웹 애플리케이션에 대한 클라이언트 요청에 대한 단일 진입점을 제공하고 처리를 위해 요청을 Spring MVC 컨트롤러에 전달하는 것과 같은 FrontController입니다.
+
+#### 프론트 컨트롤러 도입 v1### 4. MVC 프레임워크 만들기
+
+MVC 패턴은 "공통 처리의 어려움"이라는 한계가 있었습니다. 프론트 컨트롤러 패턴을 도입시켜 점진적으로 개선시켜보겠습니다.
+
+####  프론트 컨트롤러 패턴 소개
+
+프론터 컨트롤러를 도입하기 전에는
+클라이언트가 매번 공통 로직과 컨트롤러 로직을 각각 수행했어야 했습니다. 
+![fc](https://images.velog.io/images/urtimeislimited/post/83b4e885-16f7-4f12-868f-05913be92231/image.png)
+프론트 컨트롤러를 도입 하게 되면 먼저 공통 로직을 한 곳에서 처리하고 각 컨트롤러에게 로직 처리를 넘겨줍니다. 공통의 관심사를 우선적으로 먼저 처리해주는 문지기 역할이라고 할 수 있습니다.
+![afterFc](https://images.velog.io/images/urtimeislimited/post/68b70845-5536-4f9d-81a2-896786950d2f/image.png)
+
+FrontController의 특징은 다음과 같습니다.
+
+- 프론트 컨트롤러 서블릿 하나로 클라이언트의 요청을 받습니다.
+- 프론트 컨트롤러가 요청에 맞는 컨트롤러를 찾아서 호출합니다.
+- 입구를 하나로! 최소화합니다.
+- **공통 처리 가능**
+- 프론트 컨트롤러를 제외한 나머지 컨트롤러는 서블릿을 사용하지 않아도 됩니다.
+  - 요청 매핑에 사용되는 서블릿은 프론트 컨트롤러로 충분합니다.
+
+스프링 웹 MVC의 핵심은 바로 **FrontController**에 있습니다. 스프링 웹 MVC의 __DispatcherServlet__이 FrontController 패턴으로 구현되어 있기 때문입니다.
+- [DispatcherServlet](https://www.java67.com/2017/06/what-is-use-of-dispatcherservlet-in-spring-mvc.html#:~:text=The%20DispatcherServlet%20is%20one%20of,acts%20as%20a%20Front%20Controller.&text=The%20DispatcherServlet%20is%20a%20front,Spring%20MVC%20controllers%20for%20processing.) : DispatcherServlet은 Spring MVC 웹 애플리케이션에 대한 클라이언트 요청에 대한 단일 진입점을 제공하고 처리를 위해 요청을 Spring MVC 컨트롤러에 전달하는 것과 같은 FrontController입니다.
+
+#### 프론트 컨트롤러 도입 v1
+	
