@@ -53,18 +53,14 @@ public class FrontControllerServletV4 extends HttpServlet {
          */
 
         Map<String, String> paramMap = createParamMap(request);
-        
-        ModelView mv = controller.process(paramMap);
-        String viewName = mv.getViewName();// 논리 이름 new-form
-        /**
-         // /WEB-INF/views/new-form.jsp
-         MyView view = new MyView("/WEB-INF/views/" + viewName + ".jsp");
-         view.render(request, response);
-         */
+        Map<String, Object> model = new HashMap<>(); // 추가
+        String viewName = controller.process(paramMap, model);
+
+
         // /WEB-INF/views/new-form.jsp
         MyView view = viewResolver(viewName);
 
-        view.render(mv.getModel(), request, response);
+        view.render(model, request, response);
     }
 
     private MyView viewResolver(String viewName) {
