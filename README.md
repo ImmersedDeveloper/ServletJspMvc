@@ -2636,4 +2636,17 @@ public class FrontControllerServletV5 extends HttpServlet {
 ***
 
 ### 스프링 MVC - 구조 이해
-	
+
+#### 스프링 MVC 전체 구조
+직접 만든 MVC 프레임워크와 스프링 MVC를 비교해보겠습니다. 
+
+직접 만든 프레임워크와 스프링 MVC를 비교한 차이는 다음과 같습니다.
+
+- FrontController -> DispatcherServlet
+- handlerMappingMap -> HandlerMapping
+- MyHandlerAdapter -> HandlerAdapter
+- ModelView -> ModelAndView
+- viewResolver -> ViewResolver
+- MyView -> View 
+
+![mvc](https://images.velog.io/images/urtimeislimited/post/db098793-d37a-44c0-bfb1-eafcdf343593/image.png)
