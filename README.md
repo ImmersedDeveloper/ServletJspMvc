@@ -2650,3 +2650,22 @@ public class FrontControllerServletV5 extends HttpServlet {
 - MyView -> View 
 
 ![mvc](https://images.velog.io/images/urtimeislimited/post/db098793-d37a-44c0-bfb1-eafcdf343593/image.png)
+	
+![mvc](https://images.velog.io/images/urtimeislimited/post/db098793-d37a-44c0-bfb1-eafcdf343593/image.png)
+
+#### DispatcherServlet 구조 살펴보기
+
+```org.springframework.web.servlet.DispatcherServlet```
+스프링 MVC도 프론트 컨트롤러 패턴으로 구현되어 있습니다.
+스프링 MVC의 프론트 컨트롤러가 바로 디스패처 서블릿(DispatcherServlet)입니다.
+그리고 이 디스패처 서블릿이 바로 스프링 MVC의 핵심입니다.
+
+#### DispacherServlet 서블릿 등록
+DispacherServlet 도 부모 클래스에서 HttpServlet 을 상속 받아서 사용하고, 
+서블릿으로 동작합니다.
+- DispatcherServlet -> FrameworkServlet -> HttpServletBean -> HttpServlet
+- 스프링 부트는 DispacherServlet 을 서블릿으로 자동으로 등록하면서 모든 경로(urlPatterns="/" )에 대해서 매핑합니다.
+- 참고: 더 자세한 경로가 우선순위가 높기 때문에 기존에 등록한 서블릿도 함께 동작합니다.
+
+#### 요청 흐름
+
